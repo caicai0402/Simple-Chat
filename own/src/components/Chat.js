@@ -57,14 +57,15 @@ function Chat({username, password}){
             updateQuery: (prev, { subscriptionData }) => {
             if (!subscriptionData.data) return prev
                 const newMessage = subscriptionData.data
-            console.log("this is a test", newMessage, prev)
+            console.log(newMessage)
             if(newMessage.message.mutation === "CREATED")
-                return {
-                    ...prev,
-                    messages: [...prev.messages, newMessage.message.data]
-                }
+                if(newMessage.message.data.name === username || newMessage.message.data.talk_to === username)
+                    return {
+                        ...prev,
+                        messages: [...prev.messages, newMessage.message.data]
+                    }
             else if(newMessage.message.mutation === "DELETED")
-                return {name: []}
+                return {messages: []}
             }
         })
     }, [subscribeToMore])
@@ -115,25 +116,24 @@ function Chat({username, password}){
                     body: body}
             })
             setBody('')
-        }, [updateUser, addMessage, username, password, talk_to, body, friends, user_data, my_user_data])
+        }, [updateUser, addMessage, talk_to, body, friends, user_data, my_user_data])
     
     const handleMessageClear = useCallback(
         async () => {
         if (loading) return null;
         if (error) return `Error! ${error}`;
-        if (data.name.length === 0){
+        if (data.messages.length === 0){
             displayStatus({
                 type: 'error',
                 msg: 'You do not have any message.'
             })
             return
         }
-        var times = data.name.length
+        var times = data.messages.length
         for(var i = 0; i < times; i++)
-            await clearMessage({variables:{name:"", talk_to:"", body:""}})
-        setTalk_to("")
+            await clearMessage({variables:{name:username, talk_to:talk_to, body:""}})
         setBody("")
-    }, [clearMessage, loading, error, data])
+    }, [clearMessage, loading, error, data, username, talk_to])
 
     return (
         <div className="App-test">

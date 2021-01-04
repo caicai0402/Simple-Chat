@@ -12,7 +12,7 @@ const Mutation = {
         return await Message.create(args)
     },
     async deleteMessage(parent, args, { db, pubsub }, info) {
-        let message = await Message.find({name: {$regex: args.name, $options: 'i'}, talk_to: {$regex: args.talk_to, $options: 'i'}, body: {$regex: args.body, $options: 'i'}})
+        let message = await Message.find({name : {$in: [args.name, args.talk_to]}, talk_to: {$in: [args.talk_to, args.name]}, body: {$regex: args.body, $options: 'i'}})
         if(message.length === 0)
             throw new Error('Message delete query not found')
         pubsub.publish('message', {
@@ -21,7 +21,7 @@ const Mutation = {
             data: args
             }
         })
-        return await Message.findOneAndDelete( {name: {$regex: args.name, $options: 'i'}, body: {$regex: args.body, $options: 'i'}, talk_to: {$regex: args.talk_to, $options: 'i'}})
+        return await Message.findOneAndDelete({name : {$in: [args.name, args.talk_to]}, talk_to: {$in: [args.talk_to, args.name]}, body: {$regex: args.body, $options: 'i'}})
     },
     async updateMessage(parent, args, { db }, info) {
         const { name, talk_to, body, update } = args

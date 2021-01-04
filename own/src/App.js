@@ -4,13 +4,13 @@ import Chat from './components/Chat'
 import Init from './components/Init'
 
 function App() {
-    const [username, setUsername] = useState('test')
-    const [password, setPassword] = useState('test')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const [login, setLogin] = useState(false)
 
 return (
   <>
-    {login?
+    {!login?
       (
       <Init
         username={username} 

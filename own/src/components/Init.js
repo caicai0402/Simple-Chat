@@ -94,7 +94,8 @@ function Init({username, setUsername, setLogin, password, setPassword}) {
             await addUser({
                 variables:{
                     name: username,
-                    password: password}
+                    password: password,
+                    friends: []}
             })
             displayStatus({
                 type: 'success',

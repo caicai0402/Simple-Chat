@@ -21,14 +21,17 @@ const CREATE_MESSAGE_MUTATION = gql`
 const DELETE_MESSAGE_MUTATION = gql`
     mutation deleteMessage(
         $name: String!
+        $talk_to: String!
         $body: String!
         ){
             deleteMessage(
                 name: $name
+                talk_to: $talk_to
                 body: $body
             )
         {
             name
+            talk_to
             body
         }
     }
@@ -38,14 +41,17 @@ const CREATE_USER_MUTATION = gql`
     mutation createUser(
         $name: String!
         $password: String!
+        $friends: [String]!
         ){
             createUser(
                 name: $name
                 password: $password
+                friends: $friends
             )
         {
             name
             password
+            friends
         }
     }
 `
