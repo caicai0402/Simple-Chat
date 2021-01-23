@@ -1,53 +1,70 @@
-# hw8_simple_chat_with_graphql
+# Getting Started with Create React App
 
-Change the simple chat APP in HW#6 to work with GraphQL.data query interface
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Homework Requirements
+## Available Scripts
 
-0. Click on this [link](https://classroom.github.com/a/kTpXaAsP) to access the reference code from GitHub classroom.
-```
-https://classroom.github.com/a/kTpXaAsP
-```
+In the project directory, you can run:
 
-1. Change directory to "own"
-```
-cd own
-```
+### `yarn start`
 
-2. Copy files from HW#6 or HW#7 here. You are advised to write HW#8 on top of them.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-3. Change the APIs from RESTful to GraphQL. That is, you are advised to use graphQL-yoga and React-Apollo for backend and frontend services. Besides, for chatting app purpose, you should still use WebSocket instead of simple HTTP requests.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-4. Change the frontend (i.e. the chat window) so that:
-- When the chat window starts, you can specify who you are in an input box.
-- Two users on different windows can chat to each other 
-- For each message, you should specify who you want to talk to and then enter the chat message (similar to HW#6)
-- Each window with a specific user should subscribe to any incoming message addressed to this user. That is, if someone sends you a message from another window, your subscription should detect that mutation on DB and that message should appear automatically on your window.
-- (Optional. This is difficult) Implement the "Clear" button -- that is, when it is pressed, all the message sent by and addressed to this user should be deleted/removed from the database as well as other users' windows.
+### `yarn test`
 
-5. Feel free to modify the DB schema for your purpose.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-6. Start the server and client on ports 4000 and 3000, respectively.
+### `yarn build`
 
-7. Use "dotenv-defaults" and make sure ".env" is in .gitignore so that your MONGO_URL won't be revealed.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Homework Deadline
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-9pm, Wednesday, 01/06, 2021.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Homework Review
+### `yarn eject`
 
-If you submit homework in time, you should receive 2 other students' homework for review within 24 hours. Please folloing the instruction and fill in your review in this Google form: https://forms.gle/3oYtwd2rq3EHUjHT7
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Note that you need to copy your MONGO_URL link to .env file so that you can test other's program with your own DB. As long as you DO NOT change the name and data types of the MessageSchema, you should be able to run the other's queries on your own data.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Review deadline is: 9pm, Monday, 01/11, 2021.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-After the deadline of homework review, TA will push others' review back to your repo within 1 week.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Contact TA and Ric
+## Learn More
 
-If you have any question regarding to this homework or this class, please e-mail to: eewebprogramming@googlegroups.com.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-You are also welcome to raise the homework related questions on FB group.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
