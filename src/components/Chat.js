@@ -82,50 +82,49 @@ function Chat({username, password, user_login}){
         setBody('')
         }
 
-        const handleMessageClear = async () => {
-            if (loading) return null;
-            if (error) return `Error! ${error}`;
-            if (data.messages_show.length === 0){
-                displayStatus({
-                    type: 'error',
-                    msg: 'You do not have any message.'
-                })
-                return
-            }
-            var times = data.messages_show.length
-            for(var i = 0; i < times; i++)
-                await clearMessage({variables:{name:username, talk_to:talk_to, body:""}})
-            setBody("")
-        }    
-    
-        useEffect(() => {
-            subscribeToMore({
-                document: MESSAGES_SUBSCRIPTION,
-                updateQuery: (prev, { subscriptionData }) => {
-                    if (!subscriptionData.data) return prev
-                        const newMessage = subscriptionData.data
-                    if(newMessage.message.mutation === "CREATED"){
-                        if(newMessage.message.data.name === username || newMessage.message.data.talk_to === username)
-                            return {messages_show: [...prev.messages_show, newMessage.message.data]}}
-                    else if(newMessage.message.mutation === "DELETED")
-                        return {messages_show: []}
-                    }
+    const handleMessageClear = async () => {
+        if (loading) return null;
+        if (error) return `Error! ${error}`;
+        if (data.messages_show.length === 0){
+            displayStatus({
+                type: 'error',
+                msg: 'You do not have any message.'
             })
-        }, [subscribeToMore, username])
-
-        useEffect(
-            ()=>{
-                if(!user_login.loading){
-                    let index = user_login.data.user_login[0].friends.indexOf(talk_to)
-                    if(index === selectedKey)
-                        return
-                    if(index !== -1)
-                        setSelectedKey((index+2).toString())
-                    else
-                        setSelectedKey("1")}
-            }, [user_login, talk_to, selectedKey])
-        
+            return
+        }
+        var times = data.messages_show.length
+        for(var i = 0; i < times; i++)
+            await clearMessage({variables:{name:username, talk_to:talk_to, body:""}})
+        setBody("")
+    }    
     
+    useEffect(() => {
+        subscribeToMore({
+            document: MESSAGES_SUBSCRIPTION,
+            updateQuery: (prev, { subscriptionData }) => {
+                if (!subscriptionData.data) return prev
+                    const newMessage = subscriptionData.data
+                if(newMessage.message.mutation === "CREATED"){
+                    if(newMessage.message.data.name === username || newMessage.message.data.talk_to === username)
+                        return {messages_show: [...prev.messages_show, newMessage.message.data]}}
+                else if(newMessage.message.mutation === "DELETED")
+                    return {messages_show: []}
+                }
+        })
+    }, [subscribeToMore, username])
+
+    useEffect(
+        ()=>{
+            if(!user_login.loading){
+                let index = user_login.data.user_login[0].friends.indexOf(talk_to)
+                if(index === selectedKey)
+                    return
+                if(index !== -1)
+                    setSelectedKey((index+2).toString())
+                else
+                    setSelectedKey("1")}
+        }, [user_login, talk_to, selectedKey])
+
     return (
         <div className="App-test">
             <List
