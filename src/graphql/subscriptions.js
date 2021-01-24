@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost'
 
-export const MESSAGES_SUBSCRIPTION = gql`
+const MESSAGES_SUBSCRIPTION = gql`
   subscription {
     message {
       mutation
@@ -12,3 +12,20 @@ export const MESSAGES_SUBSCRIPTION = gql`
     }
   }
 `
+
+const USER_SUBSCRIPTION = gql`
+  subscription {
+    user {
+      mutation
+      data {
+        name
+        password
+        friends
+      }
+    }
+  }
+`
+
+
+
+export { MESSAGES_SUBSCRIPTION, USER_SUBSCRIPTION }

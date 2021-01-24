@@ -1,5 +1,45 @@
 import { gql } from 'apollo-boost'
 
+const CREATE_USER_MUTATION = gql`
+    mutation createUser(
+        $name: String!
+        $password: String!
+        $friends: [String]!
+        ){
+            createUser(
+                name: $name
+                password: $password
+                friends: $friends
+            )
+        {
+            name
+            password
+            friends
+        }
+    }
+`
+
+const UPDATE_USER_MUTATION = gql`
+    mutation updateUser(
+        $name: String!
+        $password: String!
+        $friends: [String]!
+        $update: String!
+        ){
+            updateUser(
+                name: $name
+                password: $password
+                friends: $friends
+                update: $update
+            )
+        {
+            name
+            password
+            friends
+        }
+    }
+`
+
 const CREATE_MESSAGE_MUTATION = gql`
     mutation createMessage(
         $name: String!
@@ -37,43 +77,6 @@ const DELETE_MESSAGE_MUTATION = gql`
     }
 `
 
-const CREATE_USER_MUTATION = gql`
-    mutation createUser(
-        $name: String!
-        $password: String!
-        $friends: [String]!
-        ){
-            createUser(
-                name: $name
-                password: $password
-                friends: $friends
-            )
-        {
-            name
-            password
-            friends
-        }
-    }
-`
 
-const UPDATE_USER_MUTATION = gql`
-    mutation updateUser(
-        $name: String!
-        $password: String!
-        $friends: [String]!
-        $update: String!
-        ){
-            updateUser(
-                name: $name
-                password: $password
-                friends: $friends
-                update: $update
-            )
-        {
-            name
-            friends
-        }
-    }
-`
 
-export { CREATE_MESSAGE_MUTATION, DELETE_MESSAGE_MUTATION, CREATE_USER_MUTATION, UPDATE_USER_MUTATION }
+export { CREATE_USER_MUTATION, UPDATE_USER_MUTATION, CREATE_MESSAGE_MUTATION, DELETE_MESSAGE_MUTATION }

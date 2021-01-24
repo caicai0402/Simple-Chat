@@ -1,15 +1,43 @@
 import { gql } from 'apollo-boost'
 
-const MESSAGES_QUERY = gql`
+const USER_NAME_QUERY = gql`
+  query (
+    $name: String!
+    $password: String
+    ){
+      user_name (
+        name: $name
+        password: $password
+      ){
+        name
+    }
+  }
+`
+
+const USER_LOGIN_QUERY = gql`
+  query (
+    $name: String!
+    $password: String!
+    ){
+      user_login (
+        name: $name
+        password: $password
+      ){
+        name
+        password
+        friends
+    }
+  }
+`
+
+const MESSAGES_SHOW_QUERY = gql`
   query (
     $name: String!
     $talk_to: String!
-    $body: String!
     ){
-    messages(
+    messages_show(
       name: $name
       talk_to: $talk_to
-      body: $body
       ){
       name
       talk_to
@@ -18,33 +46,4 @@ const MESSAGES_QUERY = gql`
   }
 `
 
-const USER_QUERY = gql`
-  query (
-    $name: String!
-    $password: String!
-    ){
-      users (
-        name: $name
-        password: $password
-      ){
-        name
-    }
-  }
-`
-
-const USER_WITH_PASSWORD_QUERY = gql`
-  query (
-    $name: String!
-    $password: String!
-    ){
-      users_with_password (
-        name: $name
-        password: $password
-      ){
-        name
-        friends
-    }
-  }
-`
-
-export { MESSAGES_QUERY, USER_QUERY, USER_WITH_PASSWORD_QUERY }
+export { USER_NAME_QUERY,  USER_LOGIN_QUERY, MESSAGES_SHOW_QUERY }
