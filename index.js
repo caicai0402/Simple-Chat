@@ -49,7 +49,7 @@ const Graphql = new GraphQLServer({
   }
 })
 
-const GRAPHQL_PORT = process.env.port || 4000
+const GRAPHQL_PORT = 4000
 Graphql.start(GRAPHQL_PORT, () => {
   console.log(`The grapgql server is up on http://localhost:${GRAPHQL_PORT}!`)
 })
