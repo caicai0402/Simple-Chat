@@ -14,12 +14,12 @@ import { getMainDefinition } from 'apollo-utilities'
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'http://192.168.50.163:4000/'
+  uri: 'http://caicai-simple-chat.herokuapp.com:4000/'
 })
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `ws://192.168.50.163:4000/`,
+  uri: `ws://caicai-simple-chat.herokuapp.com:4000/`,
   options: { reconnect: true }
 })
 
